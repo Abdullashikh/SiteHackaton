@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanMap - Environmental Reporting Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CleanMap</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="navigateTo('role-select')">Register</a></li>
+                    <li><a href="#" onclick="navigateTo('feed')">Feed</a></li>
+                    <li><a href="indi.html" onclick="navigateTo('map')">Map</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">Report Pollution.<br>Make Cities Cleaner.</h1>
+                <p class="hero-subtitle">Citizens report polluted places. Volunteers and administration clean them.</p>
+                
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="navigateTo('report')">Report a Place</button>
+                    <button class="btn btn-secondary" onclick="navigateTo('map')">View Map</button>
+                </div>
+            </div>
+
+            <!-- Floating Icons -->
+            <div class="floating-icons">
+                <div class="floating-icon icon-1">🗺️</div>
+                <div class="floating-icon icon-2">♻️</div>
+                <div class="floating-icon icon-3">🧹</div>
+                <div class="floating-icon icon-4">🌱</div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Report Issues</h3>
+                    <p>Easily report polluted areas with photos and location.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Organize Cleanups</h3>
+                    <p>Connect with volunteers to organize cleanup events.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Track Progress</h3>
+                    <p>Monitor the status of reports and cleanup activities.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Role Selection Page -->
+    <div id="role-select-page" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CleanMap</span>
+                </div>
+                <a href="#" onclick="navigateTo('landing')" class="back-link">← Back</a>
+            </div>
+        </nav>
+
+        <div class="role-container">
+            <div class="role-header fade-in">
+                <h2>Who are you?</h2>
+                <p>Choose your role to get started</p>
+            </div>
+
+            <div class="role-cards">
+                <div class="role-card" onclick="selectRole('admin')">
+                    <div class="role-icon">🏛️</div>
+                    <h3>Administration</h3>
+                    <p>Manage reports, assign tasks, and oversee cleanup operations</p>
+                    <div class="role-arrow">→</div>
+                </div>
+
+                <div class="role-card" onclick="selectRole('volunteer')">
+                    <div class="role-icon">👥</div>
+                    <h3>Volunteer / Citizen</h3>
+                    <p>Report pollution, join cleanups, and make a difference</p>
+                    <div class="role-arrow">→</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feed Page -->
+    <div id="feed-page" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CleanMap</span>
+                </div>
+                <div class="nav-actions">
+                    <input type="text" class="search-box" placeholder="Search reports...">
+                    <a href="#" onclick="navigateTo('landing')" class="back-link">← Back</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="feed-container">
+            <div class="feed-header">
+                <h2>Pollution Reports</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterReports('all')">All</button>
+                    <button class="filter-tab" onclick="filterReports('published')">Published</button>
+                    <button class="filter-tab" onclick="filterReports('taken')">Taken</button>
+                    <button class="filter-tab" onclick="filterReports('cleaned')">Cleaned</button>
+                </div>
+            </div>
+
+            <div class="feed-grid" id="feed-grid">
+                <!-- Reports will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Page -->
+    <div id="map-page" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CleanMap</span>
+                </div>
+                <a href="#" onclick="navigateTo('landing')" class="back-link">← Back</a>
+            </div>
+        </nav>
+
+        <div class="map-container">
+            <div id="map" class="map-placeholder">
+                <!-- Simplified map representation -->
+                <div class="map-header">Interactive Map View</div>
+                <div class="map-grid" id="map-grid">
+                    <!-- Map markers will be loaded here -->
+                </div>
+            </div>
+
+            <div id="map-popup" class="map-popup hidden">
+                <button class="popup-close" onclick="closeMapPopup()">×</button>
+                <img id="popup-image" src="" alt="Pollution report" class="popup-image">
+                <div class="popup-content">
+                    <h3 id="popup-title"></h3>
+                    <p id="popup-location"></p>
+                    <span id="popup-status" class="status-badge"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Details Page -->
+    <div id="details-page" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CleanMap</span>
+                </div>
+                <a href="#" onclick="navigateTo('feed')" class="back-link">← Back</a>
+            </div>
+        </nav>
+
+        <div class="details-container">
+            <div class="details-image-slider">
+                <img id="detail-image" src="https://via.placeholder.com/800x500?text=Pollution+Report" alt="Report" class="detail-image">
+                <div class="slider-controls">
+                    <button class="slider-btn prev" onclick="previousImage()">❮</button>
+                    <button class="slider-btn next" onclick="nextImage()">❯</button>
+                </div>
+            </div>
+
+            <div class="details-content">
+                <div class="details-header">
+                    <h1 id="detail-title">Trash Dump by Park</h1>
+                    <span id="detail-status" class="status-badge large">Published</span>
+                </div>
+
+                <div class="details-info">
+                    <div class="info-group">
+                        <h3>Location</h3>
+                        <p id="detail-location">📍 City: New York | District: Downtown | Street: Main St</p>
+                    </div>
+
+                    <div class="info-group">
+                        <h3>Status Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="detail-progress"></div>
+                        </div>
+                        <p class="progress-text">2 out of 5 volunteers signed up</p>
+                    </div>
+
+                    <div class="info-group">
+                        <h3>Assigned Volunteer</h3>
+                        <div class="volunteer-card">
+                            <div class="volunteer-avatar">JD</div>
+                            <div>
+                                <p class="volunteer-name">John Doe</p>
+                                <p class="volunteer-status">Accepted • Scheduled for Jan 25</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-actions">
+                    <button class="btn btn-primary" onclick="markCleaned()">Mark as Cleaned</button>
+                    <button class="btn btn-secondary" onclick="cancelTask()">Cancel Task</button>
+                </div>
+
+                <div class="comments-section">
+                    <h3>Comments</h3>
+                    <div class="comments-list" id="comments-list">
+                        <!-- Comments will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Submission Page -->
+    <div id="report-page" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CleanMap</span>
+                </div>
+                <a href="#" onclick="navigateTo('landing')" class="back-link">← Back</a>
+            </div>
+        </nav>
+
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Report a Polluted Place</h2>
+                <p>Help us keep cities clean by reporting pollution</p>
+            </div>
+
+            <form class="report-form" id="report-form">
+                <div class="form-group">
+                    <label>Upload Photo</label>
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-icon">📷</div>
+                        <p>Click or drag to upload image</p>
+                        <input type="file" id="file-input" accept="image/*" aria-label="Upload photo">
+                    </div>
+                    <div id="upload-preview" class="upload-preview hidden"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" placeholder="e.g., New York" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>District</label>
+                        <input type="text" placeholder="e.g., Downtown" class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Street Address</label>
+                    <input type="text" placeholder="e.g., Main Street, Building 42" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea placeholder="Describe the pollution..." class="form-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Location on Map</label>
+                    <div class="map-selector">
+                        <div class="map-preview">Click to select location on map</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large" onclick="submitReport(event)">
+                    <span class="btn-text">Submit Report</span>
+                    <span class="btn-loader hidden" id="submit-loader"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Volunteer Dashboard -->
+    <div id="dashboard-page" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CleanMap</span>
+                </div>
+                <div class="user-menu">
+                    <span class="user-greeting">Welcome, Volunteer! 👋</span>
+                    <a href="#" onclick="navigateTo('landing')" class="back-link">← Back</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Assigned Tasks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Cleanups Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">350</div>
+                    <div class="stat-label">Points Earned</div>
+                </div>
+            </div>
+
+            <div class="dashboard-tasks">
+                <h2>Your Assigned Tasks</h2>
+                <div class="tasks-list" id="tasks-list">
+                    <!-- Tasks will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CleanMap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="sty.css" />
+</head>
+<body><div>
+    <a href="index.html" onclick="navigateTo('page')">Back</a>
+</div>
+<header>
+  <h1>🌱 CleanMap</h1>
+  <p>Community Environmental Reporting Platform</p>
+</header>
+
+<section id="map"></section>
+
+<section class="report-form">
+  <h2>Report Polluted Place</h2>
+  <input type="text" id="city" placeholder="City">
+  <input type="text" id="district" placeholder="District">
+  <input type="text" id="street" placeholder="Street">
+  <textarea id="description" placeholder="Description"></textarea>
+  <button onclick="addReport()">Submit Report</button>
+</section>
+
+<section class="feed">
+  <h2>Public Reports</h2>
+  <div id="reports"></div>
+</section>
+
+<script src="jav.js"></script>
+</body>
+</html>
